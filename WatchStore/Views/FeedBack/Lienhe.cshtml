@@ -1,0 +1,98 @@
+﻿@model WatchStore.Models.LIENHE
+@{
+    ViewBag.Title = "Liên hệ";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="banner_inner">
+    <div class="services-breadcrumb">
+        <div class="inner_breadcrumb">
+            <ul class="short">
+                <li>
+                    @Html.ActionLink("Trang Chủ", "Index", "WatchStore")
+                    <i style="color:black">|</i>
+                    @Html.ActionLink("Liên hệ", "Lienhe", "FeedBack")
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--//banner -->
+
+<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+    <div class="container">
+        <h3 class="tittle-w3layouts text-center my-lg-4 my-4">Liên hệ</h3>
+        <div class="inner_sec">
+            <div class="address row">
+
+                <div class="col-lg-4 address-grid">
+                    <div class="row address-info">
+                        <div class="col-md-3 address-left text-center">
+                            <i class="far fa-map"></i>
+                        </div>
+                        <div class="col-md-9 address-right text-left">
+                            <h6>Địa chỉ</h6>
+                            <p>
+                                HO CHI MINH, VN
+
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 address-grid">
+                    <div class="row address-info">
+                        <div class="col-md-3 address-left text-center">
+                            <i class="far fa-envelope"></i>
+                        </div>
+                        <div class="col-md-9 address-right text-left">
+                            <h6>Email</h6>
+                            <p>
+
+                                <a href="mailto:example@email.com">jonhwick1970@gmail.com</a>
+
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 address-grid">
+                    <div class="row address-info">
+                        <div class="col-md-3 address-left text-center">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="col-md-9 address-right text-left">
+                            <h6>Điện thoại</h6>
+                            <p>+84 966 308 398</p>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="contact_grid_right">
+                <form action="#" method="post">
+                    <div class="row contact_left_grid">                      
+                        <div class="col-md-12 con-left">
+                            <div class="form-group">
+                                <label style="font-size:15pt;color:#fd7e14">Phản hồi</label>
+                                <textarea name="Mess" id="textarea" placeholder="Nhập phản hồi tại đây..." required=""></textarea>
+                            </div>
+                            <div>
+                                <input class="form-control" type="submit" value="Gửi phản hồi" />
+                            </div>
+                        </div>
+                    </div>         
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<div class="contact-map">
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d586.8032319406734!2d106.71461582346349!3d10.801675058316155!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a459cb43ab%3A0x6c3d29d370b52a7e!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBIdXRlY2g!5e0!3m2!1svi!2s!4v1552808081926" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+</div>
+

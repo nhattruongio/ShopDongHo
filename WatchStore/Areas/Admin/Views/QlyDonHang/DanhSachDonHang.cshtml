@@ -1,0 +1,149 @@
+﻿@model PagedList.PagedList<WatchStore.Models.DONDATHANG>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "DanhSachDonHang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>ĐƠN HÀNG </h2>
+<hr />
+@using (Html.BeginForm("DanhSachDonHang", "QlyDonHang", FormMethod.Get))
+{
+    <div class="col-lg-8">
+        <div class="input-group custom-search-form">
+            <input type="text" class="form-control" value="@ViewBag.TuKhoa" placeholder="Tìm kiếm theo mã đơn hàng,khách hàng" name="timkiem">
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+}
+    <style>
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd;
+            }
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align:center;
+                background-color: #4CAF50;
+                color: white;
+            }
+    </style>
+<br />
+<br />
+<br />
+<table id="customers">
+    <tr>
+        <th>
+            Tình trạng giao hàng
+        </th>
+
+        <th>
+            Ngày đặt
+        </th>
+        <th>
+            Ngày giao
+        </th>
+
+        <th>
+            Tên KH
+        </th>
+        <th>
+            SĐT
+        </th>
+        <th>
+            Địa chỉ GH
+        </th>
+        <th>
+            Tình trạng
+        </th>
+        <th>
+            Tổng tiền
+        </th>
+        <th>
+            Tình trạng thanh toán
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("HuyDonHang", "QlyDonHang", new { @madh = item.MaDonHang }))
+        {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Tinhtranggiaohang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ngaydat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ngaygiao)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DienthoaiKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiachiGH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TinhTrang)
+        </td>
+        <td>
+            @string.Format("{0:0,0}", @item.TongTien) VNĐ
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dathanhtoan)<span></span>@Html.DisplayFor(modelItem => item.ThanhToan)
+
+        </td>
+
+        <td>
+            @if (item.TinhTrang != "Đã hủy" || item.ThanhToan != "Đã thanh toán")
+            {
+                @Html.ActionLink(" ", "ChiTietDH", new { @madh = item.MaDonHang }, new { @class = "fa fa-eye btn btn-primary btn-sm", @title = "Xem chi tiết" })
+                <button class="btn btn-danger btn-sm fa fa-trash-o" title="Hủy đơn hàng" value=" " type="submit" />
+            }
+        </td>
+    </tr>
+        }
+    }
+
+</table>
+@*Tạo link liên kết các trang*@
+
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("DanhSachDonHang", new { @timkiem = @ViewBag.TuKhoa, page = page }))
+</div>
+<script>
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+</script>
+

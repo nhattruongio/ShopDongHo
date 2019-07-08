@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Về chúng tôi";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<!-- banner -->
+<style>
+    li {
+        color: #9b59b6;
+    }
+</style>
+<div class="banner_inner">
+    <div class="services-breadcrumb">
+        <div class="inner_breadcrumb">
+
+            <ul class="short">
+                <li>
+                    @Html.ActionLink("Trang Chủ", "Index", "WatchStore")
+                    <i style="color:black">|</i>
+                    @Html.ActionLink("Về chúng tôi", "AboutUS", "WatchStore")
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+
+</div>
+<!--//banner -->
+<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+    <div class="container-fluid">
+
+        <div class="inner-sec-shop px-lg-4 px-3">
+            <div class="about-content py-lg-5 py-3">
+                <div class="row">
+
+                    <div class="col-lg-4 p-0">
+                       
+                        <img src="~/Content/images/banner4.jpg" alt="" height="450" />
+                    </div>
+                    <div class="col-lg-8 about-info">
+                        <h3 class="tittle-w3layouts text-left mb-lg-5 mb-3">Về chúng tôi</h3>
+                        <p class="my-xl-4 my-lg-3 my-md-4 my-3">
+                            Khởi đầu kinh doanh từ năm 2020, Công ty TNHH Desc  bắt đầu xây dựng chuỗi hệ thống cửa hàng trưng bày và giới thiệu các sản phẩm đồng hồ cao cấp chính hãng tại thị trường Việt Nam. Mục tiêu kinh doanh của chúng tôi là cung cấp tới Khách hàng các sản phẩm Đồng hồ tốt chính hãng. Với tiêu trí kinh doanh bền vững, xây dựng uy tín dài lâu. Chúng tôi cam kết, tất cả đồng hồ được bán trực tiếp tại hệ thống các cửa hàng của chúng tôi và bán Online đều là hàng chính hãng 100%, chất lượng mới 100% được nhập khẩu nguyên chiếc từ  hãng, có xuất xứ kèm theo, có đầy đủ phụ kiện, có Thẻ/Sổ bảo hành Quốc tế đảm bảo đầy đủ quyền lợi bảo hành được qui định bởi bản hãng.
+                        </p>
+
+                        <a href="@Url.Action("Shop", "WatchStore")" class="btn btn-sm animated-button gibson-three mt-4">Mua Ngay</a>
+
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+        </div>
+    </div>
+</section>
+<hr>

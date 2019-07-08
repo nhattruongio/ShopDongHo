@@ -1,0 +1,142 @@
+﻿@model IEnumerable<WatchStore.Models.DONDATHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<br />
+
+<hr />
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-money fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><h5>@string.Format("{0:0,0}", @TempData["TongDoanhThu"]) VNĐ</h5></div>
+                        <br />
+                        <div>Tổng doanh thu</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    @Html.ActionLink("Chi tiết", "DanhSachDonHang", "QlyDonHang")
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@TempData["TongKhachHang"]</div>
+                        <div>Thành viên</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    @Html.ActionLink("Chi tiết", "DanhSachKhachHang", "QlyKhachHang")
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-shopping-cart fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@TempData["DonHangChuaDuyet"]</div>
+                        <div>Đơn hàng mới!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    @Html.ActionLink("Chi tiết", "DanhSachChuaDuyet", "QlyDonHang")
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-truck fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@TempData["DonHangChoGiao"]</div>
+                        <div>Đang giao!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    @Html.ActionLink("Chi tiết", "DonHangChoGiao", "QlyDonHang")
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+<br />
+<hr />
+<div class="container">
+    <div class="col-lg-12">
+        <div class="col-lg-2">
+
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm("TKDoanhThuTheoNgay", "ThongKe", FormMethod.Get, new { @class = "col-lg-12" }))
+            {
+                <h3 style="color:#c0392b" >Tính doanh thu theo ngày  </h3>
+                if (TempData["DoanhThuTheoNgay"] == null)
+                {
+                    TempData["DoanhThuTheoNgay"] = "0";
+                }
+                <lable  style="">Từ ngày: </lable>
+                @Html.TextBox("NgayA", TempData["NgayA"], "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                <lable  style="">Đến ngày: </lable>
+                @Html.TextBox("NgayB", TempData["NgayB"], "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                <lable style="">Tổng doanh thu: </lable>
+                <div class="form-control">@string.Format("{0:0,0}", TempData["DoanhThuTheoNgay"]) VNĐ</div>
+                <br />
+                <button type="submit" class="btn btn-warning form-control" style="font-size:13pt "> Tính tiền  <span class="fa fa-usd"></span> </button>
+            }
+        </div>
+        <div class="col-lg-4">
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>
+
+
+

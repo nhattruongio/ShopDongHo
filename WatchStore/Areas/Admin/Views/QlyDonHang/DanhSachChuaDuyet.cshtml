@@ -1,0 +1,148 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.PagedList<WatchStore.Models.DONDATHANG>
+
+@{
+    ViewBag.Title = "Danh sách đơn hàng chưa duyệt";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<br />
+<h2>CHỜ DUYỆT</h2>
+<hr />
+@using (Html.BeginForm("DanhSachChuaDuyet", "QlyDonHang", FormMethod.Get))
+{
+    <div class="col-lg-8">
+        <div class="input-group custom-search-form">
+            <input type="text" class="form-control" value="@ViewBag.TuKhoa" placeholder="Tìm kiếm theo mã đơn hàng,khách hàng" name="timkiem">
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+}
+<br />
+@if (TempData["thongbao"] != null)
+{
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <strong>@TempData["thongbao"]</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+<hr />
+
+<style>
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>
+<table id="customers">
+    <tr>
+
+
+        <th>
+            Ngày đặt
+        </th>
+
+        <th>
+            Tên khách hàng
+        </th>
+        <th>
+            SĐT
+        </th>
+        <th>
+            Địa Chỉ GH
+        </th>
+        <th>
+            Tình trạng
+        </th>
+        <th>
+            Tổng tiền
+        </th>
+        <th>
+            Thanh toán
+        </th>
+        <th>
+            Tình trạng giao hàng
+        </th>
+        <th>Duyệt</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("DuyetDonHang", "QlyDonHang", new { @madh = item.MaDonHang }))
+        {
+    <tr>
+
+   
+        <td>
+            @Html.DisplayFor(modelItem => item.Ngaydat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KHACHHANG.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DienthoaiKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiachiGH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TinhTrang)
+        </td>
+        <td>
+            @string.Format("{0:0,0}", @item.TongTien) VNĐ
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThanhToan)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Tinhtranggiaohang)
+        </td>
+        <td>
+            <button type="submit" value=" " title="Duyệt đơn hàng" class="fa fa-check btn btn-success btn-sm" />
+        </td>
+    </tr>
+        }
+    }
+
+</table>
+@*Tạo link liên kết các trang*@
+
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("DanhSachChuaDuyet", new { @timkiem = @ViewBag.TuKhoa, page = page }))
+</div>
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>

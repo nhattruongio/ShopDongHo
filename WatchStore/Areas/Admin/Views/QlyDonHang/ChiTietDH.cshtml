@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WatchStore.Models.CHITIETDONTHANG>
+
+@{
+    ViewBag.Title = "ChiTietDH";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết đơn hàng</h2>
+
+<style>
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>
+<table id="customers">
+    <tr>
+        <th>
+           Tên Sản Phẩm
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Đơn giá
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DONGHO.TenDH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soluong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dongia)
+        </td>
+
+
+    </tr>
+}
+
+</table>

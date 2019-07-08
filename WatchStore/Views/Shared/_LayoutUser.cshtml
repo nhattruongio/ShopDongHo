@@ -1,0 +1,511 @@
+
+<style>
+
+    button.top_googles_cart {
+        text-align: center;
+        background: none;
+        letter-spacing: 2px;
+        color: #454546;
+        cursor: pointer;
+        border: 1px solid #dde2e6;
+        padding: 0.5em 1em;
+
+    }
+
+</style>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <style>
+        body {
+            background-color: #6a67ce;
+        }
+    </style>
+    <link href="~/Content/css/fontawesome-all.css" rel="stylesheet">
+    <link href="~/Content/css/contact.css" rel="stylesheet" type='text/css' />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type='text/css' />
+    <link href="~/Content/css/login_overlay.css" rel="stylesheet" type='text/css' />
+    <link href="~/Content/css/style6.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/shop.css" type='text/css' />
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.css" type='text/css' media="all">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.css" type='text/css' media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/jquery-ui1.css">
+    <link href="~/Content/css/easy-responsive-tabs.css" rel="stylesheet" type='text/css' />
+    <link rel="stylesheet" href="~/Content/css/flexslider.css" type='text/css' media="screen" />
+    <link href="~/Content/css/style.css" rel="stylesheet" type='text/css' />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
+    
+</head>
+
+
+<body>
+    <div class="banner-top container-fluid">
+        <!-- header -->
+        <header>
+            <div class="row">
+                <div class="col-md-3 top-info text-left mt-lg-4 ">
+                    <h6>Cần hỗ trợ</h6>
+                    <ul>
+                        <li>
+                            <i class="fas fa-phone"></i> Gọi
+                        </li>
+                        <li class="number-phone mt-3">+84 966 308 398</li>
+                    </ul>
+
+                </div>
+                <div class="col-md-6 logo-w3layouts text-center">
+                    <h1 class="logo-w3layouts">
+                        <a href="@Url.Action("Index", "WatchStore")" class="navbar-brand " style="text-decoration:none;">john wick<span></span></a>
+                    </h1>
+                </div>
+                <div class="col-md-3 top-info-cart text-right mt-lg-4 ">
+                    @if (Session["TenDN"] != null)
+                    {
+                        <div class="dropdown">
+                            <button class="top_googles_cart" type="button" data-toggle="dropdown" style="float:left">
+                                Tài khoản
+                                <span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu ">
+                                <a class="dropdown-item"> @Session["TenDN"].ToString() </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("HienThiKH", "Nguoidung")">Chi tiết tài khoản</a>
+                                <a class="dropdown-item" href="@Url.Action("DangXuat", "Nguoidung")">Đăng xuất</a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        // <a class="top_googles_cart"  href="@Url.Action("Dangnhap", "Nguoidung")">Đăng Nhập</a>
+                        <button class="top_googles_cart" style="color:black">
+                            @Html.ActionLink("Đăng nhập", "Dangnhap", "Nguoidung")
+                        </button>
+                    }
+                    <button class="top_googles_cart">
+                        @Html.Action("GiohangPartial", "Giohang")
+                    </button>
+                </div>
+            </div>
+            <label class="top-log mx-auto"></label>
+            @Html.Action("chude", "WatchStore")
+
+        </header>
+    </div>
+    <!--//header -->
+    <!--//banner-sec-->
+
+    <section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+        <div class="container-fluid">
+            <div class="inner-sec-shop px-lg-4 px-3">
+
+                <div>
+                    @RenderBody()
+                </div>
+                <!-- //testimonials -->
+                <!-- /grids -->
+                <div class="banner">
+                    <div class="bottom-sub-grid-content py-lg-5 py-3">
+                        <div class="row">
+                            <div class="col-lg-4 bottom-sub-grid text-center">
+                                <div class="bt-icon">
+                                    <span class="far fa-hand-paper"></span>
+                                </div>
+                                <h4 class="sub-tittle-w3layouts my-lg-4 my-3">Đảm bảo sự hài lòng</h4>
+                                <p>Chúng tôi luôn đưa đến cho khách hàng những sản phẩm tốt nhất</p>
+                                <p>
+
+                                    <a href="@Url.Action("Shop", "WatchStore")" class="btn btn-sm animated-button gibson-three mt-4"><span>Mua Ngay</span></a>
+                                </p>
+                            </div>
+                            <!-- /.col-lg-4 -->
+                            <div class="col-lg-4 bottom-sub-grid text-center">
+                                <div class="bt-icon">
+                                    <span class="fas fa-rocket"></span>
+                                </div>
+                                <h4 class="sub-tittle-w3layouts my-lg-4 my-3">Giao hàng nhanh</h4>
+                                <p>Chúng tôi luôn cố gắng giao hàng nhanh nhất cho khách hàng</p>
+                                <p>
+                                    <a href="@Url.Action("Shop", "WatchStore")" class="btn btn-sm animated-button gibson-three mt-4"><span>Mua Ngay</span></a>
+
+                                </p>
+                            </div>
+                            <!-- /.col-lg-4 -->
+                            <div class="col-lg-4 bottom-sub-grid text-center">
+                                <div class="bt-icon">
+                                    <span class="far fa-sun"></span>
+                                </div>
+                                <h4 class="sub-tittle-w3layouts my-lg-4 my-3">Bảo hành 1 năm</h4>
+                                <p>Bảo hành chính hãng 12 tháng, đổi trả sản phẩm lỗi trong vòng 10 ngày <p>
+                                <p>
+                                    <a href="@Url.Action("Shop", "WatchStore")" class="btn btn-sm animated-button gibson-three mt-4"><span>Mua Ngay</span></a>
+                                </p>
+                            </div>
+                            <!-- /.col-lg-4 -->
+                        </div>
+                    </div>
+                    <!-- //grids -->
+                    <!-- /clients-sec -->
+                    <div class="testimonials p-lg-5 p-3 mt-4">
+                        <div class="row last-section">
+                            <div class="col-lg-3 footer-top-w3layouts-grid-sec">
+                                <div class="mail-grid-icon text-center">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                                <div class="mail-grid-text-info">
+                                    <h3>Sản phẩm chính hãng</h3>
+                                    <p>Tất cả sản phẩm nhập khẩu chính hãng</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 footer-top-w3layouts-grid-sec">
+                                <div class="mail-grid-icon text-center">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="mail-grid-text-info">
+                                    <h3>Sản phẩm an toàn</h3>
+                                    <p>Đảm bảo các quy chuẩn sản xuất</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 footer-top-w3layouts-grid-sec">
+                                <div class="mail-grid-icon text-center">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div class="mail-grid-text-info">
+                                    <h3>Thanh toán khi nhận hàng</h3>
+                                    <p>Tiện lợi thanh toán với nhiều hình thức </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 footer-top-w3layouts-grid-sec">
+                                <div class="mail-grid-icon text-center">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <div class="mail-grid-text-info">
+                                    <h3>Giao hàng dễ dàng, nhanh chóng</h3>
+                                    <p>Sản phẩm luôn đến tay khách đúng thời gian</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- //clients-sec -->
+    <!-- about -->
+    <!--footer -->
+    <footer class="py-lg-5 py-3">
+        <div class="container-fluid px-lg-5 px-3">
+            <div class="row footer-top-w3layouts">
+                <div class="col-lg-3 footer-grid-w3ls">
+                    <div class="footer-title">
+                        <h3>Trang liên kết</h3>
+                    </div>
+                    <div class="fb-page" data-href="https://www.facebook.com/JonhWick-422139448545082" data-tabs="timeline" data-width="360" data-height="100" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/JonhWick-422139448545082" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/JonhWick-422139448545082">JonhWick</a></blockquote></div>
+                </div>
+                <div class="col-lg-3 footer-grid-w3ls">
+                    <div class="footer-title">
+                        <h3>Thông tin</h3>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Địa chỉ:</h4>
+                        <p>860 Xô Viết Nghệ Tĩnh, quận Bình Thạnh , Tp.Hồ Chí Minh</p>
+                        <div class="phone">
+                            <h4>Liên hệ :</h4>
+                            <p>Di động : +84 966 308 398</p>
+                            <p>
+                                Email :
+                                <a href="mailto:info@example.com">toivui123@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 footer-grid-w3ls">
+                    <div class="footer-title">
+                        <h3>Liên kết</h3>
+                    </div>
+                    <ul class="links">
+                        <li>
+                            @Html.ActionLink("Trang chủ", "Index", "WatchStore")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Về chúng tôi", "AboutUS", "WatchStore")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Cửa hàng", "Shop", "WatchStore")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Liên hệ", "Lienhe", "FeedBack")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Quản trị viên", "Login", "Autthh", new { @class = "Admin" })
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 footer-grid-w3ls">
+                    <div class="footer-title">
+                        <h3>Đăng kí nhận tin khuyến mãi</h3>
+                    </div>
+                    <div class="footer-text">
+                        <p>Bằng cách đăng ký vào danh sách gửi thư của chúng tôi, bạn sẽ luôn nhận được tin tức và cập nhật mới nhất từ ​​chúng tôi.</p>
+                        <form action="#" method="post">
+                            <input class="form-control" type="email" name="Email" placeholder="Nhập Email của bạn tại đây..." required="">
+                            <button class="btn1">
+                                <i class="far fa-envelope" aria-hidden="true"></i>
+                            </button>
+                            <div class="clearfix"> </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Load Facebook SDK for JavaScript -->
+            <div id="fb-root"></div>
+            <script>
+                window.fbAsyncInit = function () {
+                    FB.init({
+                        xfbml: true,
+                        version: 'v3.2'
+                    });
+                };
+
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+
+            <!-- Your customer chat code -->
+            <div class="fb-customerchat"
+                 attribution=setup_tool
+                 page_id="422139448545082"
+                 theme_color="#fa3c4c"
+                 logged_in_greeting="Xin chào! JonhWick luôn sẵn sàng trả lời mọi câu hỏi của bạn !"
+                 logged_out_greeting="Xin chào! JonhWick luôn sẵn sàng trả lời mọi câu hỏi của bạn !">
+            </div>
+        </div>
+    </footer>
+
+
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=817732121913685&autoLogAppEvents=1"></script>
+    <!-- //footer -->
+    <!--jQuery-->
+    <script src="~/Content/js/jquery-2.2.3.min.js"></script>
+
+    <!--search jQuery-->
+    <script src="~/Content/js/modernizr-2.6.2.min.js"></script>
+    <script src="~/Content/js/classie-search.js"></script>
+    <script src="~/Content/js/demo1-search.js"></script>
+    <!--//search jQuery-->
+    <!-- cart-js -->
+    <script src="~/Content/js/minicart.js"></script>
+    <script>
+        googles.render();
+
+        googles.cart.on('googles_checkout', function (evt) {
+            var items, len, i;
+
+            if (this.subtotal() > 0) {
+                items = this.items();
+
+                for (i = 0, len = items.length; i < len; i++) { }
+            }
+        });
+    </script>
+    <!-- //cart-js -->
+    <script>
+        $(document).ready(function () {
+            $(".button-log a").click(function () {
+                $(".overlay-login").fadeToggle(200);
+                $(this).toggleClass('btn-open').toggleClass('btn-close');
+            });
+        });
+        $('.overlay-close1').on('click', function () {
+            $(".overlay-login").fadeToggle(200);
+            $(".button-log a").toggleClass('btn-open').toggleClass('btn-close');
+            open = false;
+        });
+    </script>
+    <!-- carousel -->
+    <!-- price range (top products) -->
+    <script src="~/Content/js/owl.carousel.js"></script>
+    <script src="~/Content/js/jquery-ui.js"></script>
+
+    <script src="~/Content/js/easy-responsive-tabs.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#horizontalTab').easyResponsiveTabs({
+                type: 'default', //Types: default, vertical, accordion
+                width: 'auto', //auto or any width like 600px
+                fit: true, // 100% fit in a container
+                closed: 'accordion', // Start closed if in accordion view
+                activate: function (event) { // Callback function if tab is switched
+                    var $tab = $(this);
+                    var $info = $('#tabInfo');
+                    var $name = $('span', $info);
+                    $name.text($tab.text());
+                    $info.show();
+                }
+            });
+            $('#verticalTab').easyResponsiveTabs({
+                type: 'vertical',
+                width: 'auto',
+                fit: true
+            });
+        });
+    </script>
+    <!--quantity-->
+    <script>
+        $('.value-plus').on('click', function () {
+            var divUpd = $(this).parent().find('.value'),
+                newVal = parseInt(divUpd.text(), 10) + 1;
+            divUpd.text(newVal);
+        });
+
+        $('.value-minus').on('click', function () {
+            var divUpd = $(this).parent().find('.value'),
+                newVal = parseInt(divUpd.text(), 10) - 1;
+            if (newVal >= 1) divUpd.text(newVal);
+        });
+    </script>
+    <!--quantity-->
+    <!--close-->
+    <script>
+        $(document).ready(function (c) {
+            $('.close1').on('click', function (c) {
+                $('.rem1').fadeOut('slow', function (c) {
+                    $('.rem1').remove();
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function (c) {
+            $('.close2').on('click', function (c) {
+                $('.rem2').fadeOut('slow', function (c) {
+                    $('.rem2').remove();
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function (c) {
+            $('.close3').on('click', function (c) {
+                $('.rem3').fadeOut('slow', function (c) {
+                    $('.rem3').remove();
+                });
+            });
+        });
+    </script>
+    <!--//close-->
+    <!-- dropdown nav -->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+    <!-- //dropdown nav -->
+    <script src="~/Content/js/move-top.js"></script>
+    <script src="~/Content/js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 900);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            /* var defaults = {
+                 containerID: 'toTop', // fading element id
+                 containerHoverID: 'toTopHover', // fading element hover id
+                 scrollSpeed: 1200,
+                 easingType: 'linear'
+             };*/
+
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+
+    </script>
+
+    <!--// end-smoth-scrolling -->
+    <script>
+        //<![CDATA[
+        $(window).load(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 9000,
+                values: [50, 6000],
+                slide: function (event, ui) {
+                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                }
+            });
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+        }); //]]>
+    </script>
+
+    <!-- single -->
+    <script src="~/Content/js/imagezoom.js"></script>
+    <!-- single -->
+    <!-- script for responsive tabs -->
+    <!-- FlexSlider -->
+    <script src="~/Content/js/jquery.flexslider.js"></script>
+    <script>
+        // Can also be used with $(document).ready()
+        $(window).load(function () {
+            $('.flexslider1').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });             
+    </script>
+    <!-- //FlexSlider-->
+
+
+
+    <script src="~/Content/js/bootstrap.js"></script>
+    <!-- js file -->
+
+
+</body>
+
+</html>

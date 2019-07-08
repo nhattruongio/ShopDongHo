@@ -1,0 +1,74 @@
+﻿
+@model WatchStore.Models.DONGHO
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.TenDH);
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<br />
+<h3 class="tittle-w3layouts text-center my-lg-4 my-4">Chi tiết sản phẩm</h3>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <label class="col-md-2">  Mã sản phẩm</label>
+            <div class="col-md-10"> @Html.DisplayFor(model => model.MaSP)</div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div>
+            <label class="col-md-2">  Tên sản phẩm</label>
+            <div class="col-md-10"> @Html.DisplayFor(model => model.TenDH)</div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div>
+            <label class="col-md-2"> Nhà sản xuất</label>
+            <div class="col-md-10"> @Html.DisplayFor(model => model.NHASANXUAT.TenNSX)</div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div>
+            <label class="col-md-2">  Số lượng</label>
+            <div class="col-md-10"> @Html.DisplayFor(model => model.Soluongton)</div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div>
+            <label class="col-md-2">  Giá bán </label>
+            <div class="col-md-10"> @string.Format("{0:0,0}", Model.Giaban) VNĐ</div>
+        </div>
+    </div>
+    <hr />
+    <div class="col-md-4">
+        <div class="col-md-12">Ảnh bìa</div>
+        <img width="200" height="300" src="@Url.Content("~/Content/images/" + Model.Anhbia)" alt="">
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-12">Ảnh 1</div>
+        <img width="200" height="300" src="@Url.Content("~/Content/images/" + Model.Anh1)" alt="">
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-12">Ảnh 2</div>
+        <img width="200" height="300" src="@Url.Content("~/Content/images/" + Model.Anh2)" alt="">
+    </div>
+    <br />
+    <hr />
+    <div class="col-md-12">
+        <div>
+            <label class="col-md-2">  Ngày cập nhật</label>
+            <div class="col-md-10"> @Html.DisplayFor(model => model.Ngaycapnhat)</div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div>
+            <label class="col-md-2">Mô tả</label>
+            <div class="col-md-10">@Html.Raw(Model.Mota)</div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="col-md-offset-4">
+    @Html.ActionLink("Sửa", "ChinhSua", new { @masp = Model.MaSP }, new { @class = "btn btn-lg btn-success" })
+    @Html.ActionLink("Trở về", "QuanLySanPham", null, new { @class = "btn btn-lg btn-danger" })
+</div>

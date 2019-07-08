@@ -1,0 +1,153 @@
+﻿@model WatchStore.Models.DONGHO
+    @{
+        ViewBag.Title = "Chỉnh sửa";
+        Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+    <br />
+    <h3 class="tittle-w3layouts text-center my-lg-4 my-4">Chỉnh sửa sản phẩm</h3>
+
+    <hr />
+    @if (TempData["thanhcong"] != null)
+    {
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <strong>@TempData["thanhcong"]</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (TempData["kthanhcong"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <strong>@TempData["kthanhcong"]</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @using (Html.BeginForm("ChinhSua", "QlySanPham", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+
+            <div class="form-group"> 
+                <div class="col-md-5" name="spx">
+                    @Html.HiddenFor(model => model.MaSP)
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </div>
+            </div>
+         <div class="form-group">
+             <div class="col-md-2">
+                 Tên sản phẩm :
+             </div>
+             <div class="col-md-5">
+                 @Html.TextBoxFor(model => model.TenDH, new { @class = "form-control" })
+                 @Html.ValidationMessageFor(model => model.TenDH, "", new { @class = "text-danger" })
+             </div>
+         </div>
+
+         <div class="form-group">
+             <div class="col-md-2">
+                 Mã đồng hồ :
+             </div>
+             <div class="col-md-5">
+                 @Html.TextBoxFor(model => model.MaDH, new { @class = "form-control" })
+                 @Html.ValidationMessageFor(model => model.MaDH, "", new { @class = "text-danger" })
+             </div>
+         </div>
+         <div class="form-group">
+             <div class="col-md-2">
+                 Chất liệu :
+             </div>
+             <div class="col-md-5">
+                 @Html.TextBoxFor(model => model.Chatlieu, new { @class = "form-control" })
+                 @Html.ValidationMessageFor(model => model.Chatlieu, "", new { @class = "text-danger" })
+             </div>
+         </div>
+         <div class="form-group">
+             <div class="col-md-2">
+                 Ảnh bìa :
+             </div>
+             <div class="col-md-10">
+
+                 <input type="file" name="fileUpload3">
+                 @ViewBag.ThongBao
+             </div>
+
+         </div>
+         <div class="form-group">
+             <div class="col-md-2">
+                 Ảnh 1 :
+             </div>
+             <div class="col-md-10">
+
+                 <input type="file" name="fileUpload4">
+                 @ViewBag.ThongBao
+             </div>
+
+         </div>
+         <div class="form-group">
+             <div class="col-md-2">
+                 Ảnh 2 :
+             </div>
+             <div class="col-md-10">
+
+                 <input type="file" name="fileUpload5">
+                 @ViewBag.ThongBao
+             </div>
+
+         </div>
+
+         <div class="form-group">
+             <div class="col-md-2">
+                 Nhà sản xuất :
+             </div>
+             <div class="col-md-5">
+                 @Html.DropDownList("TenNSX", null, new { @class = "form-control" })
+             </div>
+         </div>
+
+         <div class="form-group">
+             <div class="col-md-2">
+                 Số lượng :
+             </div>
+             <div class="col-md-5">
+                 @Html.TextBoxFor(model => model.Soluongton, new { @class = "form-control", @type = "number" })
+                 @Html.ValidationMessageFor(model => model.Soluongton, "", new { @class = "text-danger" })
+             </div>
+         </div>
+
+         <div class="form-group">
+             <div class="col-md-2">
+                 Giá bán :
+             </div>
+             <div class="col-md-5">
+                 @Html.TextBoxFor(model => model.Giaban, new { @class = "form-control" })
+                 @Html.ValidationMessageFor(model => model.Giaban, "", new { @class = "text-danger" })
+             </div>
+             <p style="margin-top:10px">VNĐ</p>
+         </div>
+         <div class="form-group">
+             <div class="col-md-2">
+                 Mô tả :
+             </div>
+             <div class="col-md-8">
+                 <textarea name="MoTa"> </textarea>
+                 @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })      
+             </div>
+         </div>
+            
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Lưu" class="btn btn-success" />
+                    @Html.ActionLink("Trở về", "QuanLySanPham", null, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+
+        </div>
+    }
+

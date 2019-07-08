@@ -1,0 +1,76 @@
+﻿@model WatchStore.Models.ADMIN
+
+@{
+    Layout = null;
+}
+
+<link href="~/Content/css/fontawesome-all.css" rel="stylesheet">
+<link href="~/Content/css/contact.css" rel="stylesheet" type='text/css' />
+<link href="~/Content/css/bootstrap.css" rel="stylesheet" type='text/css' />
+<link href="~/Content/css/login_overlay.css" rel="stylesheet" type='text/css' />
+<link href="~/Content/css/style6.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/css/shop.css" type='text/css' />
+<link rel="stylesheet" href="~/Content/css/owl.carousel.css" type='text/css' media="all">
+<link rel="stylesheet" href="~/Content/css/owl.theme.css" type='text/css' media="all">
+<link rel="stylesheet" type="text/css" href="~/Content/css/jquery-ui1.css">
+<link href="~/Content/css/easy-responsive-tabs.css" rel="stylesheet" type='text/css' />
+<link rel="stylesheet" href="~/Content/css/flexslider.css" type='text/css' media="screen" />
+<link href="~/Content/css/style.css" rel="stylesheet" type='text/css' />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
+
+<h3 class="tittle-w3layouts text-center my-lg-4 my-4">Đăng nhập tài khoản quản trị</h3>
+
+<div class="alert alert-danger alert-dismissible" role="alert" style="text-align:center">
+    <strong>@ViewBag.Thongbao</strong>
+</div>
+<hr />
+
+<body>
+    <section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+        <div class="container">
+            <div class="inner_sec">
+                <div class="contact_grid_right">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.ValidationSummary(true)
+                        <div class="row contact_left_grid">
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <label class="my-2">Email/Tài khoản</label>
+                                    <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label class="my-2">Mật khẩu</label>
+                                    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="" required="" style="outline: none;padding: 15px 15px;font-size: 14px;color: #777;background: #f7f7f7;width: 100%;letter-spacing: 1px;border: 1px solid #ebeeef;">
+                                </div>
+
+
+                                <input class="form-control" type="submit" value="Đăng nhập" />
+                                <br />
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                        <!---->
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<hr />
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>

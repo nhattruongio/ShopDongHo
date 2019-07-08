@@ -1,0 +1,108 @@
+
+@{
+    ViewBag.Title = @Model.TenDH;
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<hr>
+<div class="banner_inner">
+    <div class="services-breadcrumb">
+        <div class="inner_breadcrumb">
+
+            <ul class="short">
+                <li>
+                    @Html.ActionLink("Trang Chủ", "Index", "WatchStore")
+                    <i style="color:black">|</i>
+                    @Html.ActionLink("Sản Phẩm", "Details", "WatchStore")
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+
+</div>
+<!--//banner -->
+<hr>
+
+<div class="container">
+    <div class="inner-sec-shop pt-lg-4 pt-3">
+        <div class="row">
+            <div class="col-lg-5 single-right-left ">
+                <div class="grid images_3_of_2">
+                    <div class="flexslider1">
+
+                        <ul class="slides">
+                            <li data-thumb="/Content/images/@Model.Anhbia">
+                                <div class="thumb-image">
+                                    <img alt="@Model.Anhbia" src="~/Content/images/@Model.Anhbia" data-imagezoom="true" class="img-fluid">
+
+                                </div>
+                            </li>
+                            <li data-thumb="/Content/images/@Model.Anh1">
+                                <div class="thumb-image">
+                                    <img alt="@Model.Anh1" src="~/Content/images/@Model.Anh1" data-imagezoom="true" class="img-fluid">
+                                </div>
+                            </li>
+                            <li data-thumb="/Content/images/@Model.Anh2">
+                                <div class="thumb-image">
+                                    <img alt="@Model.Anh2" src="~/Content/images/@Model.Anh2" data-imagezoom="true" class="img-fluid">
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-7 single-right-left simpleCart_shelfItem">
+                <h3 style=" font-size:40px">@Model.TenDH</h3>
+                <hr />
+
+                <p>
+                    <span class="item_price">@String.Format("{0:0,0}", @Model.Giaban) VNĐ</span>
+                    <del>@String.Format("{0:0,0}", @Model.Giaban) VNĐ</del>
+                </p>
+                <div class="rating1">
+                    <ul class="stars">
+                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+                <hr />
+                <p>
+                    Số lượng còn lại:
+                    <span>@Model.Soluongton</span>
+                </p>
+                <hr />
+                <p>
+                    Chất liệu:
+                    <span>@Model.Chatlieu</span>
+                </p>
+                <hr />
+                <p>
+                    Xuất xứ:
+                    <span>@Model.MaNCC</span>
+                </p>
+                <hr />
+
+                <div id="Datmua">
+                    <a href="@Url.Action("ThemGioHang","GioHang", new{@iMaSP =  @Model.MaSP, @strURL = Request.Url.ToString() })" class="btn btn-lg btn-outline-dark">
+                        Thêm vào giỏ hàng
+                        <span>
+                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="clearfix"> </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+

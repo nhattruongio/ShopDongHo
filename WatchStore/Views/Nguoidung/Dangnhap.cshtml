@@ -1,0 +1,94 @@
+﻿@model WatchStore.Models.KHACHHANG
+@using WatchStore.Models
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div class="banner_inner">
+    <div class="services-breadcrumb">
+        <div class="inner_breadcrumb">
+
+            <ul class="short">
+                <li>
+                    @Html.ActionLink("Trang Chủ", "Index", "WatchStore")
+                    <i style="color:black">|</i>
+                    @Html.ActionLink("Đăng nhập tài khoản", "Dangnhap", "Nguoidung")
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+</div>
+<!--//banner -->
+
+<h3 class="tittle-w3layouts text-center my-lg-4 my-4">Đăng nhập tài khoản</h3>
+
+
+<div class="alert alert-danger alert-dismissible" role="alert" style="text-align:center ">
+    <strong>@ViewBag.Thongbao</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<hr />
+<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+    <div class="container">
+        <div class="inner_sec">
+            <div class="contact_grid_right">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+                    <div class="row contact_left_grid">
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <label class="my-2">Email/Tài khoản</label>
+                                <input name="TenDN" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="my-2">Mật khẩu</label>
+                                <input name="Matkhau" type="password" class="form-control" id="exampleInputPassword1" placeholder="" required="" style="outline: none;padding: 15px 15px;font-size: 14px;color: #777;background: #f7f7f7;width: 100%;letter-spacing: 1px;border: 1px solid #ebeeef;">
+                            </div>
+                            <input class="form-control" type="submit" value="Đăng nhập" />
+                            <br />
+                            <div class="fb-login-button" data-size="large" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="true"></div>
+                            <div id="status">
+                            </div>
+                            <br />
+                            <div class="req_pass" style="text-align:center">
+                                Bạn chưa có tài khoản
+                                <span>|</span>
+                                @Html.ActionLink("Đăng ký ngay", "DangKy", "Nguoidung")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                    <!---->
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<hr />
+
+<script src="~/Scripts/FacebookLogin.js"></script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=817732121913685&autoLogAppEvents=1"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>
+
+
+
+

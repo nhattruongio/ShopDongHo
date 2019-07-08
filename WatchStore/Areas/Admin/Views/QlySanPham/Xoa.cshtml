@@ -1,0 +1,94 @@
+﻿@model WatchStore.Models.DONGHO
+@{
+    ViewBag.Title = "Xoá sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<br />
+<h3 class="tittle-w3layouts text-center my-lg-4 my-4">Xoá sản phẩm</h3>
+
+<hr />
+
+<div class="col-md-4">
+
+    <dl class="dl-horizontal">
+        <dt>
+            Mã sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaDH)
+        </dd>
+
+        <dt>
+            Tên sản phẩm :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDH)
+        </dd>
+        <dt>
+            Nhà sản xuất :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHASANXUAT.TenNSX)
+        </dd>
+
+        <dt>
+            Số lượng :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Soluongton)
+        </dd>
+
+        <dt>
+            Giá bán :
+        </dt>
+
+        <dd>
+             @string.Format("{0:0,0}", Model.Giaban) VNĐ
+
+        </dd>
+
+        <dt>
+            Mô tả :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+
+        <dt>
+            Ngày cập nhật :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngaycapnhat)
+        </dd>
+
+    </dl>
+
+
+</div>
+<div class="col-md-4">
+
+   
+        <img width="200" height="300" src="@Url.Content("~/Content/images/" + Model.Anhbia)" alt="">
+   
+
+
+</div>
+
+<div class="col-md-4">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger " />
+            @Html.ActionLink("Trở về", "QuanLySanPham", null, new { @class = "btn btn-success" })
+        </div>
+    }
+</div>

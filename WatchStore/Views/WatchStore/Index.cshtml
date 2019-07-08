@@ -1,0 +1,253 @@
+﻿@using WatchStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<DONGHO>
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<!-- banner -->
+<div class="banner-top container-fluid " id="home">
+    <div class="banner">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="carousel-caption text-center">
+                        <h3>
+                            Giảm giá sập sàn
+                            <span>Mùa hè sôi động giảm đến 50%</span>
+                        </h3>
+                        <a href="@Url.Action("Shop", "WatchStore")" class="btn btn-s animated-button gibson-three mt-4">Mua Ngay</a>
+                    </div>
+                </div>
+                <div class="carousel-item item2">
+                    <div class="carousel-caption text-center">
+                        <h3>
+                            Đồng hồ nam
+                            <span>Hãy lựa chọn cho mình một sản phẩm phù hợp trước khi rời khỏi website nhé</span>
+                        </h3>
+                        <a href="@Url.Action("Shop", "WatchStore")" class="btn btn-sm animated-button gibson-three mt-4">Mua Ngay</a>
+                    </div>
+                </div>
+                <div class="carousel-item item3">
+                    <div class="carousel-caption text-center">
+                        <h3>
+                            Đồng hồ nữ
+                            <span>Hãy lựa chọn cho mình một sản phẩm phù hợp trước khi rời khỏi website nhé</span>
+                        </h3>
+                        <a href="@Url.Action("Shop", "WatchStore")" class="btn btn-lg animated-button gibson-three mt-4">Mua Ngay</a>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Trở về</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Tiếp theo</span>
+            </a>
+        </div>
+        <!--//banner -->
+    </div>
+
+
+</div>
+
+<!--//banner-sec-->
+
+<h3 class="tittle-w3layouts my-lg-4 my-4">Sản phẩm mới</h3>
+<div class="row">
+    @foreach (var dongho in Model)
+    {
+
+        <div class=" col-md-3 product-men women_two">
+            <div class="product-googles-info googles">
+                <div class="men-pro-item">
+                    <div class="men-thumb-item">
+                        <a href="@Url.Action("Details", "WatchStore", new { @id = dongho.MaSP })">
+                            <img alt="@dongho.Anhbia" src="~/Content/images/@dongho.Anhbia" />
+                        </a>
+                        <div class="men-cart-pro">
+                            <div class="inner-men-cart-pro">
+                                <a href="@Url.Action("Details","WatchStore", new { @id= dongho.MaSP})" class="link-product-add-cart">Xem</a>
+                            </div>
+                        </div>
+                        <span class="product-new-top">Mới</span>
+                    </div>
+                    <div class="item-info-product">
+                        <div class="info-product-price">
+                            <div class="grid_meta">
+                                <div class="product_price">
+                                    <h4>
+                                        <a href="@Url.Action("Details","WatchStore", new { @id= dongho.MaSP})">@Truncate(dongho.TenDH, 35)</a>
+                                    </h4>
+                                    <div class="grid-price mt-2">
+                                        <span class="item_price">@String.Format("{0:0,0}", dongho.Giaban) VNĐ</span>
+                                    </div>
+                                </div>
+                                <ul class="stars">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+   Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        text-align: center;
+        color: #ecf0f1;
+        background-color: #34495e;
+        margin-left: 20px;
+        height: 30px;
+        width: 30px;
+        border-radius: 0px;
+        display: inline;
+    }
+</style>
+
+<div class="testimonials py-lg-4 py-3 mt-4">
+    <div class="testimonials-inner py-lg-4 py-3">
+        <h3 class="tittle-w3layouts text-center my-lg-4 my-4">Tiêu chí chọn một chiếc đồng hồ tốt</h3>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="testimonials_grid text-center">
+                        <h3>
+                            Thương hiệu
+                        </h3>
+                        <p>
+                            Ngoài ra bây giờ trên thị trường có rất nhiều thương hiệu nổi tiếng khác trẻ trung hơn nhưng chất lượng cũng rất tốt. Vì vậy có rất nhiều lựa chọn, nên chọn đồng hồ đang được nhiều người dùng và có những phản hồi tốt  vì dù sao đấy chính là kiểm nghiệm chính xác nhất.
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="testimonials_grid text-center">
+                        <h3>
+                            Máy đồng hồ
+                        </h3>
+                        <p>
+                            Đồng hồ điện tử thường chạy chính xác hơn. Nhưng nếu sở hữu một chiếc đồng hồ cơ tự động thì sẽ có nhiều người nhìn bạn bằng ánh mắt ngưỡng mộ hơn, vì chi phí sản xuất cao hơn do phải làm nhiều chi tiết hơn. Đồng hồ cơ đòi hỏi kỹ thuật tỉ mỉ hơn nên cần đến kinh nghiệm và tay nghề của các thợ sản xuất đồng hồ; cả hai thứ này đều không rẻ. Nguyên liệu làm đồng hồ cơ (vàng, đá quý, các kim loại đặc biệt) đắt tiền hơn; chế độ bảo hành phức tạp do có nhiều chi tiết hơn; hệ thống phân phối với số lượng ít hơn thì chi phí sẽ cao hơn.
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="testimonials_grid text-center">
+                        <h3>
+                            Mặt đồng hồ nào là tốt nhất?
+                        </h3>
+                        <p>
+                            Mặt làm bằng mica dễ bị đàn hồi và xước nhưng dễ đánh bóng, làm mới. Mặt thuỷ tinh khoáng không đàn hồi chống nước tốt, khó xước hơn và cũng có thể đánh bóng khi bị xước.Mặt bằng saphia chống xước tốt nhất, chỉ xước nếu bị cọ với kim cương.
+                        </p>
+                    </div>
+                </div>
+                <a class="carousel-control-prev test" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="fas fa-long-arrow-alt-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next test" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="fas fa-long-arrow-alt-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row galsses-grids pt-lg-5 pt-3">
+    <div class="col-lg-6 galsses-grid-left">
+        <figure class="effect-lexi">
+            <img src="~/Content/images/banner4.jpg" alt="" class="img-fluid">
+            <figcaption>
+                <h3>
+                    Nhà bán hàng số 1
+                    <span>Việt Nam</span>
+                </h3>
+                <p>
+                    <a href="@Url.Action("Shop", "WatchStore" )" style="color:#f1c40f">Mua Ngay</a>
+
+                </p>
+
+            </figcaption>
+        </figure>
+    </div>
+    <div class="col-lg-6 galsses-grid-left">
+        <figure class="effect-lexi">
+            <img src="~/Content/images/banner3.jpg" alt="" class="img-fluid">
+            <figcaption>
+                <h3>
+                    Nhà phân phối số
+                    <span>Việt Nam</span>
+                </h3>
+
+                <p>
+                    <a href="@Url.Action("Shop", "WatchStore")" style="color:#f1c40f">Mua Ngay</a>
+
+                </p>
+            </figcaption>
+        </figure>
+    </div>
+</div>
+
+
+<style>
+    .MenuTrang {
+        display: inline;
+    }
+</style>
+
+
+
+
+
+
+

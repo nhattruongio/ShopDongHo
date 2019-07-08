@@ -1,0 +1,244 @@
+﻿@using WatchStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<DONGHO>
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+@{
+    ViewBag.Title = "Cửa hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style>
+    li {
+        color: #9b59b6;
+    }
+
+    .MenuTrang li {
+        text-align: center;
+        color: #ecf0f1;
+        background-color: #34495e;
+        margin-left: 20px;
+        height: 30px;
+        width: 30px;
+        border-radius: 0px;
+        display: inline;
+    }
+</style>
+<!-- banner -->
+<div class="banner_inner">
+    <div class="services-breadcrumb">
+        <div class="inner_breadcrumb">
+
+            <ul class="short">
+                <li>
+                    @Html.ActionLink("Trang Chủ", "Index", "WatchStore")
+                    <i style="color:black">|</i>
+                    @Html.ActionLink("Cửa hàng", "", "WatchStore")
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+</div>
+<!--//banner -->
+<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+    <div class="container-fluid">
+        <div class="inner-sec-shop px-lg-4 px-3">
+            <h3 class="tittle-w3layouts my-lg-4 mt-3">Sản phẩm mới</h3>
+            <div class="row">
+                <!-- product left -->
+                <div class="side-bar col-lg-3">
+                    <div class="search-hotel">
+                        <h3 class="agileits-sear-head">Tìm kiếm sản phẩm </h3>
+                        <form action="#" method="post">
+                            <input class="form-control" value="@ViewBag.TuKhoa" type="search" name="timkiem" placeholder="Nhập tên sản phẩm..." required="">
+                            <button class="btn1">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <div class="clearfix"> </div>
+                        </form>
+                    </div>
+                    <!-- price range -->
+                    <div class="range">
+                        <h3 class="agileits-sear-head">Khoảng giá</h3>
+                        <ul class="dropdown-menu6">
+                            <li>
+
+                                <div id="slider-range"></div>
+                                <input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //price range -->
+                    <!--preference -->
+                    <div class="left-side">
+                        <h3 class="agileits-sear-head">Lọc</h3>
+                        <ul>
+                            <li>
+                                <input type="checkbox" class="checked">
+                                <span class="span">Nam</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked">
+                                <span class="span">Nữ</span>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked">
+                                <span class="span">Nam & Nữ </span>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- // preference -->
+                    <!-- reviews -->
+                    <div class="customer-rev left-side">
+                        <h3 class="agileits-sear-head">Đánh giá</h3>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <span>5.0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <span>4.0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <span>3.5</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <span>3.0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <span>2.5</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //reviews -->
+                </div>
+                <!-- //product left -->
+                <!--/product right-->
+                <div class="left-ads-display col-lg-9">
+                    <div class="wrapper_top_shop">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class=" col-md-3 product-men women_two">
+                                    <div class="product-googles-info googles">
+                                        <div class="men-pro-item">
+                                            <div class="men-thumb-item">
+                                                <a href="@Url.Action("Details", "WatchStore", new { @id = item.MaSP })">
+                                                    <img alt="@item.Anhbia" src="~/Content/images/@item.Anhbia" />
+                                                </a>
+                                                <div class="men-cart-pro">
+                                                    <div class="inner-men-cart-pro">
+                                                        <a href="@Url.Action("Details","WatchStore", new { @id= item.MaSP})" class="link-product-add-cart">Xem</a>
+                                                    </div>
+                                                </div>
+                                                <span class="product-new-top">Mới</span>
+                                            </div>
+                                            <div class="item-info-product">
+                                                <div class="info-product-price">
+                                                    <div class="grid_meta">
+                                                        <div class="product_price">
+                                                            <h4>
+                                                                <a href="@Url.Action("Details","WatchStore", new { @id=item.MaSP})">@Truncate(item.TenDH, 35)</a>
+                                                            </h4>
+                                                            <div class="grid-price mt-2">
+                                                                <span class="item_price">@String.Format("{0:0,0}", @item.Giaban) VNĐ</span>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <ul class="stars">
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+                        <div class="MenuTrang">
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

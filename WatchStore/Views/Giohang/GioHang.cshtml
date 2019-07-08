@@ -1,0 +1,184 @@
+﻿@using WatchStore.Models
+@model List<Giohang>
+@{
+    ViewBag.Title = "Giỏ Hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<link href="~/Content/css/bootstrap.css" rel="stylesheet" type='text/css' />
+
+<link href="css/login_overlay.css" rel='stylesheet' type='text/css' />
+
+<link href="~/Content/css/login_overlay.css" rel="stylesheet" />
+
+
+<link href="~/Content/css/style6.css" rel="stylesheet" />
+
+<link href="~/Content/css/shop.css" rel="stylesheet" type="text/css" />
+
+<link href="~/Content/css/checkout.css" rel="stylesheet" type="text/css" />
+
+<link href="~/Content/css/easy-responsive-tabs.css" rel="stylesheet" />
+
+<link href="~/Content/css/style.css" rel="stylesheet" />
+
+<link href="~/Content/css/fontawesome-all.css" rel="stylesheet" />
+<link href="//fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+      rel="stylesheet">
+
+<!-- banner -->
+<div class="banner_inner">
+    <div class="services-breadcrumb">
+        <div class="inner_breadcrumb">
+
+            <ul class="short">
+                <li>
+                    @Html.ActionLink("Trang Chủ", "Index", "WatchStore")
+                    <i style="color:black">|</i>
+                    @Html.ActionLink("Giỏ hàng", "GioHang", "Giohang")
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+</div>
+<!--//banner -->
+<h2 class="text-center">GIỎ HÀNG (@ViewBag.Tongsoluong sản phẩm)</h2>
+<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+    <div class="container">
+        <div class="inner-sec-shop px-lg-4 px-3">
+            <div class="checkout-right">
+                <table class="timetable_sub">
+                    <thead>
+                        <tr>
+                            <th>Mã SP</th>
+                            <th>Hình ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                            <th>Thành tiền</th>
+                            <th>Thay đổi</th>
+                            <th>Loại bỏ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="invert">@item.sMaDH</td>
+                                <td class="invert-image">
+                                    <a href="@Url.Action("Details","WatchStore", new { id= item.iMaSP})">
+                                        <img src="~/Content/images/@item.sAnhbia" alt="" class="img-responsive">
+                                    </a>
+
+                                </td>
+                                @using (Html.BeginForm("CapnhatGiohang", "Giohang", new { @iMa = item.iMaSP }))
+                                {
+                                    <td class="invert">@item.sTenDH</td>
+                                    <td class="invert">
+                                        <div class="quantity">
+                                            <div class="quantity-select">
+                                                <input type="number" class="entry value" value=" @item.iSoluong" name="txtSoluong" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="invert">@String.Format("{0:0,0}", item.dDongia) VNĐ</td>
+                                    <td class="invert">@String.Format("{0:0,0}", item.dThanhtien) VNĐ</td>
+                                    <td class="invert">
+                                        <input type="submit" value="Cập nhật" class="btn btn-lg btn-block fa fa-upload" />
+
+                                    </td>
+                                    <td class="invert">
+                                        <a href="@Url.Action("XoaGiohang", new { @iMa= item.iMaSP})" class="fa fa-remove">
+                                        </a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                        <tr style="text-align:right">
+                            <td colspan="19">
+                                @Html.ActionLink("Xoá giỏ hàng", "Xoatatcagiohang")
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="checkout-left row">
+                <div class="col-md-4 checkout-left-basket">
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                            <li>
+
+                                @item.sMaDH:
+                                <i>    </i>
+                                <span>@String.Format("{0:0,0}", item.dThanhtien) VNĐ </span>
+                            </li>
+
+                        }
+                        <li>
+                            Giảm giá :
+                            <span>0 VNĐ</span>
+                        </li>
+                        <li style="font-weight: bold;font-size:16px">
+                            Tổng tiền phải thanh toán :
+                            <span>@String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-8 address_form">
+                    
+                    @*Nhập thông tin , địa chỉ nhận hàng thanh toán*@
+                    @using (Html.BeginForm("DatHang", "GioHang"))
+                    {
+                        if (Session["TenDN"] == null || Session["TenDN"].ToString() == "")
+                        {<h4>Thêm chi tiết</h4>
+                            <div class="creditly-card-form agileinfo_form">
+                                <section class="creditly-wrapper wrapper">
+                                    <div class="information-wrapper">
+                                        <div class="first-row form-group">
+                                            <div class="controls">
+                                                <label class="control-label">Họ và tên: </label>
+                                                <input class="billing-address-name form-control" type="text" name="HoTenKH" placeholder="Nhập họ tên..." required="">
+                                            </div>
+                                            <div class="card_number_grids">
+                                                <div class="card_number_grid_left">
+                                                    <div class="controls">
+                                                        <label class="control-label">Số điện thoại:</label>
+                                                        <input class="form-control" type="text" placeholder="Nhập sđt..." name="DienthoaiKH" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="card_number_grid_right">
+                                                    <div class="controls">
+                                                        <label class="control-label">Địa chỉ nhận hàng</label>
+                                                        <input class="form-control" type="text" placeholder="Nhập địa chỉ..." name="DiachiGH" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="clear"> </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                </section>
+                            </div>
+                        }
+                        <button type="submit" class="btn btn-lg btn-outline-dark  " >Xác nhận đặt hàng</button>
+                    }
+
+                </div>
+
+                        <div class="clearfix"> </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<hr />
+

@@ -1,0 +1,70 @@
+﻿@model WatchStore.Models.KHACHHANG
+@{
+    ViewBag.Title = "Thông tin chi tiết";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>
+
+<br />
+<h2>CHI TIẾT</h2>
+<hr />
+<div>
+    <table id="customers">
+        <tr>
+            <th> Mã khách hàng</th>
+            <th> Họ tên</th>
+            <th> Tài khoản</th>
+            <th> Địa chỉ</th>
+            <th> Emails</th>
+            <th> Số điện thoại</th>
+            <th> Ngày sinh</th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.MaKH)</td>
+            <td>@Html.DisplayFor(model => model.HoTen)</td>
+            <td> @Html.DisplayFor(model => model.Taikhoan) </td>
+            <td>@Html.DisplayFor(model => model.DiachiKH)</td>
+            <td>
+                @Html.DisplayFor(model => model.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.DienthoaiKH)
+            </td>
+            <td>@Html.DisplayFor(model => model.Ngaysinh)</td>
+        </tr>
+    </table> 
+</div>
+<br />
+<p>
+    @Html.ActionLink("Trở về", "DanhSachKhachHang", null, new { @class = "btn btn-lg btn-danger" })
+
+</p>
+
